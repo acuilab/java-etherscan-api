@@ -85,7 +85,8 @@ public class EtherScanApi implements AutoCloseable {
         // EtherScan 1request\5sec limit support by queue manager
         final IHttpExecutor executor = executorSupplier.get();
 
-        final String ending = EthNetwork.TOBALABA.equals(network) ? "com" : "io";
+        // MAINNET_CN: https://api-cn.etherscan.com/
+        final String ending = EthNetwork.TOBALABA.equals(network) || EthNetwork.MAINNET_CN.equals(network) ? "com" : "io";
         final String baseUrl = "https://" + network.getDomain() + ".etherscan." + ending + "/api" + "?apikey=" + apiKey;
 
         this.queueManager = queue;
